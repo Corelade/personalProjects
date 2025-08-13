@@ -1,0 +1,10 @@
+# This is a shift scheduling project to automate shift scheduling for businesses.
+
+- The business has multiple departments and multiple staff members. 
+- Determine the number of hours per staff
+- Each department must have a minimum of 1 staff member at all times.
+- Each staff member has contracted hours that must be satsified each week.
+- Each shift must be a minimum of 4hours long.
+- One team lead must be present in each department type (Maintenance, Tills)
+
+First - Define classes for objects (staff and departments)

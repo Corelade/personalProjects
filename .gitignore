@@ -2,3 +2,6 @@ media/
 gitvenv/
 .mypy_cache/
 .DS_Store
+/word_game
+/crime_data
+/imageConverter
