@@ -1,4 +1,10 @@
+import random
+
 # Define classes for Departments and Staff
+
+# Some departments should only require staff during specific shifts like only evenings or afternoons and evenings or morning, afternoon and evenings
+
+# Some staff members have availability days
 
 class Department:
     '''
@@ -29,15 +35,17 @@ class Staff:
         - Position (Associate, Management, Team Lead, Loss Protection)
         - Availability (To Be Implemented)
     '''
+    
+    # i'm to add staff availability, i.e some staff can only work on some certain days 
+    
     staff_members = []
     
     def __init__(self, name:str, position:str):
         self.name = name.lower()
-        # self.contract_hours = contract_hours
         self.position = position.lower()
-        self.max_hours = 48
+        self.contract_hours = random.choice([i for i in range(8, 46, 4)])
         self.min_hours = 8
-        self.hours_worked = 0
+
         Staff.staff_members.append(self)
     
     @classmethod

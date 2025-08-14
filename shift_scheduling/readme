@@ -1,10 +1,29 @@
-# This is a shift scheduling project to automate shift scheduling for businesses.
+# Shift Scheduling (Backtracking CSP)
 
-- The business has multiple departments and multiple staff members. 
-- Determine the number of hours per staff
-- Each department must have a minimum of 1 staff member at all times.
-- Each staff member has contracted hours that must be satsified each week.
-- Each shift must be a minimum of 4hours long.
-- One team lead must be present in each department type (Maintenance, Tills)
+A tiny constraint-solver that builds a weekly rota for multiple departments and three daily shifts using plain Python. It models the problem as a constraint satisfaction problem (CSP) and searches for a valid assignment with backtracking.
 
-First - Define classes for objects (staff and departments)
+# What it does
+- Defines departments with max_num_staff (and optional min_num_staff).
+
+- Defines staff with name, role, and contract_hours.
+
+- Generates all domains (e.g. monday_morning_cashier) from days × shifts × departments.
+
+- Uses a backtracking search to assign staff to each domain while enforcing:
+
+    - per-department capacity limits,
+    - no double-booking in the same day+shift across departments,
+    - no duplicates within a single department shift,
+    - a per-person weekly shift limit (default: 14 shifts),
+    - global minimums per department for feasibility checks.
+
+- Makes mornings flexible: only the department minimum is required in the morning; afternoon/evening aim for the max.
+(This behavior is encapsulated in target_capacity().)
+
+- Prints a nested JSON schedule: day → shift → department → [staff].
+
+# Requirements
+
+- Python 3.8+
+
+- Standard library only (no external packages)
