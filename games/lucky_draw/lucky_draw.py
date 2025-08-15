@@ -6,23 +6,23 @@ def get_numeric_input(prompt, low=5, high=9):
     while True:
         resp = input(prompt)
 
-        if resp == 'q':
+        if resp == "q":
             exit()
 
         try:
             number = int(resp)
         except ValueError:
-            print("Only numbers are allowed")
+            # print("Only numbers are allowed")
             continue
 
         if number < low or number > high:
-            print(f"Number must be between {low} and {high}")
+            # print(f"Number must be between {low} and {high}")
             continue
         return number
 
 
 def game(players):
-    
+
     def wrong_answer(red_ball, choice):
         return red_ball == choice
 
@@ -32,6 +32,7 @@ def game(players):
 
         if len(players) == 1:
             winner = players[0]
+            return winner
 
         random.shuffle(players)
 
@@ -52,7 +53,12 @@ def game(players):
                     user_choice = options[0]
                 else:
                     user_choice = (
-                        get_numeric_input(f"Choose a number in range {1} - {len(options)}, or q to quit:  ", 1, len(options)) - 1
+                        get_numeric_input(
+                            f"Choose a number in range {1} - {len(options)}, or q to quit:  ",
+                            1,
+                            len(options),
+                        )
+                        - 1
                     )
                     user_choice = options[user_choice]
                 if wrong_answer(red_ball, user_choice):
@@ -62,7 +68,7 @@ def game(players):
             else:
                 ai_choice = random.choice(options)
                 if wrong_answer(red_ball, ai_choice):
-                    print(f'{player} Eliminated')
+                    # print(f"{player} Eliminated")
                     players.remove(player)
                     break
                 options.remove(ai_choice)
@@ -83,16 +89,17 @@ def play():
         if not username:
             continue
         break
-    
+
     def create_players(opponent_count):
         "create AI instances"
         ais = ["AI" + str(i) for i in range(1, opponent_count + 1)]
 
         players = ais + [username]
-        
+
         return players
 
     while True:
+        print('Starting game')
         PLAYERS = create_players(opponent_count)
         winner = game(PLAYERS)
         print(f"winner is {winner}")
