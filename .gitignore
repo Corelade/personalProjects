@@ -5,3 +5,4 @@ gitvenv/
 /word_game
 /crime_data
 /imageConverter
+__pycache__/
